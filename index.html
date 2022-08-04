@@ -30,25 +30,32 @@
         Сценарий: Правильно! Загаданное значение 56. Вы угадали с 4й попытки.  -->
     </pre>
     <script>
-        let randomValue = Math.floor(Math.random() * 101);
-        alert('Я загадал случайное число от 0 до 100. Попробуй отгадать его.');
-        let userValue = +prompt('Введи число', '');
-        let counter = 1;
+        let randomValue;
+        let repeat;
+        do {
+            randomValue = Math.floor(Math.random() * 101);
+            alert('Я загадал случайное число от 0 до 100. Попробуй отгадать его.');
+            let userValue = +prompt('Введи число', '');
+            let counter = 1;
 
-        if (userValue != randomValue) {
-            while (userValue != randomValue) {
-                counter++;
-                if (userValue > randomValue) {
-                    userValue = +prompt('Я загадал значение меньше чем ' + userValue);
+            if (userValue != randomValue) {
+                while (userValue != randomValue) {
+                    counter++;
+                    if (userValue > randomValue) {
+                        userValue = +prompt('Я загадал значение меньше чем ' + userValue);
+                    }
+                    if (userValue < randomValue) {
+                        userValue = +prompt('Я загадал значение больше чем ' + userValue);
+                    }
+                    if (userValue == randomValue) {
+                        alert(`Поздравляю! Ты угадал с ${counter} попытки.\n\rЗагаданное число: ${randomValue}`);
+                    }
                 }
-                if (userValue < randomValue) {
-                    userValue = +prompt('Я загадал значение больше чем ' + userValue);
-                }
-                if (userValue == randomValue) alert(`Поздравляю! Ты угадал с ${counter} попытки.\n\rЗагаданное число: ${randomValue}`);
             }
-        }
-        else {
-            alert(`Ты угадал c первой попытки! Загаданное число:${randomValue}`);
+            else {
+                alert(`Ты угадал c первой попытки! Загаданное число:${randomValue}`);
+            }
+        } while (repeat = confirm('Хочешь сыграть ещё раз?'));
         }
     </script>
 </body>
